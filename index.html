@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Eja Anggota Badan - Spell the Body Part | Kinder Klub</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --font-main: 'Quicksand', 'QuickSans', system-ui, -apple-system, sans-serif;
+      --candy-pink: #FF2E93;
+      --candy-hot-pink: #FF1493;
+      --candy-orange: #FF7A00;
+      --candy-yellow: #FFD200;
+      --candy-purple: #8B2CFF;
+      --candy-violet: #6C15E8;
+      --candy-blue: #0088FF;
+      --candy-cyan: #00E5FF;
+      --candy-lime: #76FF03;
+      --candy-cream: #FFF9F0;
+      --candy-navy: #15093A;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+      font-family: var(--font-main);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--candy-navy);
+      color: #FFFFFF;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Dual Orientation Responsive Backgrounds */
+    .bg-game-layer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media (orientation: portrait) {
+      .bg-game-layer {
+        background-image: url('https://imglink.cc/cdn/7StITkRCav.jpeg');
+      }
+    }
+
+    @media (orientation: landscape) {
+      .bg-game-layer {
+        background-image: url('https://imglink.cc/cdn/eQeZ1l03eq.jpeg');
+      }
+    }
+
+    .bg-overlay-tint {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(20, 8, 51, 0.45) 0%, rgba(10, 4, 30, 0.82) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 3D Bright Pop Candy Buttons */
+    .btn-candy {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-size: 1.15rem;
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25), 0 12px 20px rgba(0,0,0,0.3);
+      border: 3px solid rgba(255, 255, 255, 0.7);
+    }
+    .btn-candy:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .btn-pink {
+      background: linear-gradient(180deg, #FF66B2 0%, var(--candy-pink) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 8px 0 #B8005A, 0 12px 24px rgba(255, 46, 147, 0.45);
+    }
+    .btn-yellow {
+      background: linear-gradient(180deg, #FFF066 0%, var(--candy-yellow) 100%);
+      color: #593500;
+      box-shadow: 0 8px 0 #C49700, 0 12px 24px rgba(255, 210, 0, 0.45);
+    }
+    .btn-purple {
+      background: linear-gradient(180deg, #B56BFF 0%, var(--candy-purple) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 8px 0 #4C00A8, 0 12px 24px rgba(139, 44, 255, 0.45);
+    }
+    .btn-blue {
+      background: linear-gradient(180deg, #4DB3FF 0%, var(--candy-blue) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 8px 0 #0056A8, 0 12px 24px rgba(0, 136, 255, 0.45);
+    }
+    .btn-cyan {
+      background: linear-gradient(180deg, #6DF0FF 0%, var(--candy-cyan) 100%);
+      color: #004D59;
+      box-shadow: 0 8px 0 #009BB0, 0 12px 24px rgba(0, 229, 255, 0.45);
+    }
+    .btn-orange {
+      background: linear-gradient(180deg, #FFA94D 0%, var(--candy-orange) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 8px 0 #B25500, 0 12px 24px rgba(255, 122, 0, 0.45);
+    }
+
+    /* Candy 3D Card / Frame */
+    .candy-card {
+      background: rgba(25, 12, 60, 0.88);
+      backdrop-filter: blur(14px);
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      border-radius: 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+
+    /* 3D Pop Letter Tiles */
+    .letter-tile {
+      width: 58px;
+      height: 64px;
+      min-width: 52px;
+      min-height: 58px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: linear-gradient(180deg, #FF80BF 0%, var(--candy-pink) 100%);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 7px 0 #AB0050, 0 10px 18px rgba(0,0,0,0.35);
+      cursor: grab;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      touch-action: none;
+    }
+    .letter-tile:active {
+      cursor: grabbing;
+      transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 10px 0 #AB0050, 0 16px 26px rgba(255, 46, 147, 0.5);
+    }
+    .letter-tile.tile-orange {
+      background: linear-gradient(180deg, #FFA454 0%, var(--candy-orange) 100%);
+      box-shadow: 0 7px 0 #9E4900, 0 10px 18px rgba(0,0,0,0.35);
+    }
+    .letter-tile.tile-blue {
+      background: linear-gradient(180deg, #64BAFF 0%, var(--candy-blue) 100%);
+      box-shadow: 0 7px 0 #005BA6, 0 10px 18px rgba(0,0,0,0.35);
+    }
+    .letter-tile.tile-purple {
+      background: linear-gradient(180deg, #C27DFF 0%, var(--candy-purple) 100%);
+      box-shadow: 0 7px 0 #54009E, 0 10px 18px rgba(0,0,0,0.35);
+    }
+    .letter-tile.tile-cyan {
+      background: linear-gradient(180deg, #61F2FF 0%, var(--candy-cyan) 100%);
+      color: #004D59;
+      box-shadow: 0 7px 0 #00899E, 0 10px 18px rgba(0,0,0,0.35);
+    }
+    .letter-tile.dragging {
+      opacity: 0.85;
+      transform: scale(1.15) rotate(4deg);
+      z-index: 100;
+    }
+
+    /* Spelling Target Slot */
+    .letter-slot {
+      width: 58px;
+      height: 64px;
+      min-width: 52px;
+      min-height: 58px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: rgba(14, 5, 36, 0.7);
+      border: 3px dashed rgba(255, 255, 255, 0.45);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .letter-slot.drag-over {
+      border-color: var(--candy-yellow);
+      background: rgba(255, 210, 0, 0.2);
+      transform: scale(1.08);
+    }
+    .letter-slot.filled {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(180deg, #76FF03 0%, #3DA600 100%);
+      box-shadow: 0 7px 0 #286E00, 0 10px 18px rgba(118, 255, 3, 0.4);
+      color: #083300;
+    }
+    .letter-slot.placed-pending {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(180deg, #FF66B2 0%, var(--candy-pink) 100%);
+      box-shadow: 0 6px 0 #AB0050, 0 8px 16px rgba(0,0,0,0.3);
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+    .letter-slot.wrong-attempt, .btn-candy.wrong-attempt {
+      border-color: #FF3B30 !important;
+      background: linear-gradient(180deg, #FF6B6B 0%, #C92A2A 100%) !important;
+      box-shadow: 0 6px 0 #841010, 0 8px 16px rgba(255, 59, 48, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Mascot Speech Bubble */
+    .speech-bubble {
+      position: relative;
+      background: #FFFFFF;
+      color: var(--candy-navy);
+      font-weight: 800;
+      border-radius: 20px;
+      padding: 12px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      border: 3px solid var(--candy-yellow);
+      display: inline-block;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 28px;
+      border-width: 14px 12px 0 0;
+      border-style: solid;
+      border-color: #FFFFFF transparent transparent transparent;
+      filter: drop-shadow(0 3px 0 var(--candy-yellow));
+    }
+
+    /* Soft Bounce & Wobble animations */
+    @keyframes softBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes gentleWobble {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px) rotate(-3deg); }
+      40%, 80% { transform: translateX(8px) rotate(3deg); }
+    }
+    @keyframes wordGlow {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
+      50% { filter: drop-shadow(0 0 20px #76FF03); }
+    }
+    .anim-bounce { animation: softBounce 0.45s ease; }
+    .anim-wobble { animation: gentleWobble 0.45s ease; }
+    .anim-glow { animation: wordGlow 0.8s ease; }
+
+    /* SVG Connecting Canvas */
+    #svgConnectCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 30;
+      overflow: visible;
+    }
+
+    /* Enhanced Touch & Tap Matching Targets */
+    .connect-target {
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+      height: 80px;
+      min-height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(25, 12, 60, 0.9) 0%, rgba(12, 5, 32, 0.95) 100%);
+      border: 3px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .connect-word {
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+      height: 80px;
+      min-height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 10px 14px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      position: relative;
+      text-transform: uppercase;
+      box-shadow: 0 6px 0 #AB0050, 0 10px 16px rgba(0, 0, 0, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.85);
+      background: linear-gradient(180deg, #FF66B2 0%, var(--candy-pink) 100%);
+      color: #FFFFFF;
+      overflow: hidden;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    @media (min-width: 640px) {
+      .connect-target, .connect-word {
+        height: 94px;
+        min-height: 94px;
+        font-size: 1.25rem;
+      }
+    }
+
+    .connect-target:active, .connect-word:active {
+      transform: scale(0.96);
+    }
+
+    /* Tap Selected State with Candy Halo Pulse */
+    @keyframes pulseRing {
+      0%, 100% { box-shadow: 0 0 0 4px #FFD200, 0 8px 24px rgba(255, 210, 0, 0.6); }
+      50% { box-shadow: 0 0 0 7px #FFF066, 0 12px 28px rgba(255, 210, 0, 0.9); }
+    }
+
+    .item-selected {
+      animation: pulseRing 1s infinite alternate;
+      border-color: #FFD200 !important;
+      transform: scale(1.05) !important;
+      z-index: 25;
+    }
+
+    .item-matched {
+      border-color: #76FF03 !important;
+      background: linear-gradient(180deg, rgba(40, 140, 0, 0.85) 0%, rgba(20, 80, 0, 0.95) 100%) !important;
+      color: #FFFFFF !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 16px rgba(118, 255, 3, 0.6), 0 4px 0 #185200 !important;
+      pointer-events: none !important;
+      cursor: default !important;
+      opacity: 0.95;
+      transform: scale(1) !important;
+    }
+  </style>
+</head>
+<body class="relative flex flex-col justify-between overflow-x-hidden">
+
+  <!-- DUAL-ORIENTATION RESPONSIVE BACKGROUND & TINT OVERLAY -->
+  <div class="bg-game-layer"></div>
+  <div class="bg-overlay-tint"></div>
+
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="relative z-20 w-full px-4 py-3 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md">
+    <div class="flex items-center space-x-3 cursor-pointer" onclick="showScreen('home')">
+      <!-- Kinder Klub Emblem with Mascot Icon -->
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 via-yellow-400 to-cyan-400 flex items-center justify-center shadow-lg border-2 border-white p-1 overflow-hidden">
+        <img src="https://imglink.cc/cdn/Z_MnZXrTV4.png" alt="Explorer Mascot" class="w-full h-full object-contain filter drop-shadow">
+      </div>
+      <div>
+        <h1 id="appTitleText" class="text-xl sm:text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-400 to-cyan-300">
+          Anggota Badan Adventure
+        </h1>
+        <p id="appSubTitleText" class="text-xs sm:text-sm text-yellow-200/80 font-semibold hidden sm:block">
+          Jom padankan dan eja nama anggota badan!
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Controls: Audio Mute, Language Switch, Profile Shortcut -->
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <!-- Sound FX Toggle Button -->
+      <button id="soundToggleBtn" onclick="toggleAudio()" class="w-11 h-11 rounded-2xl bg-purple-900/80 border-2 border-purple-400 flex items-center justify-center text-white shadow-md hover:bg-purple-800 transition" aria-label="Toggle Sound">
+        <svg id="soundOnIcon" class="w-6 h-6 fill-current text-yellow-300" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg id="soundOffIcon" class="w-6 h-6 fill-current text-pink-400 hidden" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.73 4.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+      </button>
+
+      <!-- Language Toggle (BM / EN) -->
+      <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3 py-2 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 border-2 border-white text-xs sm:text-sm font-black shadow-md tracking-wider flex items-center space-x-1" aria-label="Tukar Bahasa / Change Language">
+        <span id="langFlag">🇲🇾</span>
+        <span id="langLabel">BM</span>
+      </button>
+
+      <!-- Help / Instructions Modal Trigger -->
+      <button onclick="showScreen('instructions')" class="w-11 h-11 rounded-2xl bg-cyan-600 border-2 border-cyan-300 flex items-center justify-center text-white font-extrabold text-lg shadow-md" aria-label="Cara Main">
+        ?
+      </button>
+    </div>
+  </header>
+
+  <main class="relative z-10 flex-1 flex items-center justify-center p-3 sm:p-6 w-full max-w-5xl mx-auto">
+
+    <!-- SCREEN 1: HOME SCREEN -->
+    <section id="screen-home" class="w-full text-center py-4 flex flex-col items-center">
+      <!-- Mascot Welcome Banner -->
+      <div class="relative inline-block mb-3">
+        <div id="mascotBubbleHome" class="speech-bubble mb-2 text-base sm:text-lg">
+          Jom padankan dan eja nama anggota badan!
+        </div>
+        <!-- Central Explorer Mascot Illustration -->
+        <div id="homeMascotContainer" class="w-36 h-36 sm:w-44 sm:h-44 mx-auto filter drop-shadow-2xl anim-bounce flex items-center justify-center">
+          <img src="https://imglink.cc/cdn/Dn_mSXYwAR.png" alt="Explorer Mascot Idle" class="w-full h-full object-contain">
+        </div>
+      </div>
+
+      <!-- Action Buttons Grid -->
+      <div class="w-full max-w-md flex flex-col gap-3.5 px-4 mt-2">
+        <button id="btnStartPlaying" onclick="showScreen('sessionSelect')" class="btn-candy btn-yellow text-xl sm:text-2xl py-3.5 sm:py-4">
+          Mula Main
+        </button>
+        <div class="grid grid-cols-2 gap-3">
+          <button id="btnPlayerProfile" onclick="showScreen('playerProfile')" class="btn-candy btn-pink text-sm sm:text-base py-3">
+            Profil Pemain
+          </button>
+          <button id="btnCollection" onclick="showScreen('collection')" class="btn-candy btn-purple text-sm sm:text-base py-3">
+            Koleksi
+          </button>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <button id="btnFamilyCode" onclick="showScreen('familyCodeScreen')" class="btn-candy btn-cyan text-sm sm:text-base py-3">
+            Kod Keluarga
+          </button>
+          <button id="btnStudentProfile" onclick="showScreen('studentProfileScreen')" class="btn-candy btn-blue text-sm sm:text-base py-3">
+            Profil Murid
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: SESSION SELECTION SCREEN -->
+    <section id="screen-sessionSelect" class="w-full max-w-lg candy-card p-6 text-center hidden">
+      <h2 id="sessionSelectTitle" class="text-2xl sm:text-3xl font-extrabold text-yellow-300 mb-2">
+        Pilih Permainan
+      </h2>
+      <p id="sessionSelectDesc" class="text-sm sm:text-base text-white/90 mb-6">
+        Pilih bilangan soalan untuk pengembaraan kamu!
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <button onclick="startSession(5)" class="btn-candy btn-pink py-4 text-lg">
+          <span class="session-opt-5">5 Soalan</span>
+        </button>
+        <button onclick="startSession(10)" class="btn-candy btn-yellow py-4 text-lg">
+          <span class="session-opt-10">10 Soalan</span>
+        </button>
+        <button onclick="startSession(20)" class="btn-candy btn-purple py-4 text-lg">
+          <span class="session-opt-20">20 Soalan</span>
+        </button>
+        <button onclick="startSession(0)" class="btn-candy btn-cyan py-4 text-lg">
+          <span class="session-opt-free">Main Bebas</span>
+        </button>
+      </div>
+
+      <button onclick="showScreen('home')" class="px-6 py-2 rounded-full border-2 border-white/40 text-sm font-bold text-white/80 hover:bg-white/10 transition">
+        ← <span class="lbl-back">Kembali ke Menu</span>
+      </button>
+    </section>
+
+    <!-- SCREEN 3: GAMEPLAY ARENA -->
+    <section id="screen-gameplay" class="w-full relative hidden flex flex-col items-center">
+      <!-- Top Gameplay Status Bar -->
+      <div class="w-full flex items-center justify-between px-3 py-2 bg-black/40 rounded-2xl border border-white/20 mb-3 text-sm font-bold">
+        <div class="flex items-center space-x-2">
+          <span class="text-yellow-300 font-extrabold" id="progressIndicator">Soalan 1/5</span>
+          <span id="sessionTag" class="text-xs px-2 py-0.5 rounded-full bg-pink-600 text-white">5 Soalan</span>
+        </div>
+        <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-1 text-yellow-300">
+            <span>⭐</span>
+            <span id="gameScoreDisplay">0</span>
+          </div>
+          <button onclick="confirmExitGame()" class="px-2.5 py-1 rounded-xl bg-red-600/80 hover:bg-red-500 text-white text-xs border border-white/40">
+            ✕ <span class="lbl-exit">Keluar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mascot Guidance & Feedback Callout -->
+      <div class="w-full flex items-center space-x-3 mb-3">
+        <div id="gameplayMascot" class="w-16 h-16 flex-shrink-0">
+          <!-- Mascot dynamically updated here -->
+        </div>
+        <div id="gameSpeechBubble" class="speech-bubble flex-1 text-sm sm:text-base transition-all duration-300">
+          Ini apa?
+        </div>
+      </div>
+
+      <!-- Dynamic Gameplay Area for Variations A, B, C, D, E -->
+      <div id="dynamicTaskContainer" class="w-full candy-card p-4 sm:p-6 flex flex-col items-center min-h-[360px] justify-center relative">
+        <!-- SVG Canvas for Drag-to-Connect lines in Variation D -->
+        <svg id="svgConnectCanvas"></svg>
+        <div id="taskContent" class="w-full flex flex-col items-center">
+          <!-- Dynamic Task DOM goes here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: RESULTS SCREEN -->
+    <section id="screen-result" class="w-full max-w-lg candy-card p-6 text-center hidden">
+      <div class="w-28 h-28 mx-auto mb-3 anim-bounce" id="resultMascot">
+        <!-- Mascot celebration -->
+      </div>
+      <h2 id="resultHeading" class="text-3xl sm:text-4xl font-black text-yellow-300 mb-1">
+        Hebat!
+      </h2>
+      <p id="resultSubHeading" class="text-lg text-pink-300 font-extrabold mb-5">
+        Permainan Selesai!
+      </p>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="bg-purple-900/60 p-3 rounded-2xl border-2 border-purple-400">
+          <div class="text-xs text-purple-200 font-bold uppercase lbl-score">Skor</div>
+          <div id="resScore" class="text-2xl font-black text-yellow-300">0</div>
+        </div>
+        <div class="bg-pink-900/60 p-3 rounded-2xl border-2 border-pink-400">
+          <div class="text-xs text-pink-200 font-bold uppercase lbl-correct">Jawapan Betul</div>
+          <div id="resCorrect" class="text-2xl font-black text-lime-400">0</div>
+        </div>
+        <div class="bg-cyan-900/60 p-3 rounded-2xl border-2 border-cyan-400">
+          <div class="text-xs text-cyan-200 font-bold uppercase lbl-accuracy">Ketepatan</div>
+          <div id="resAccuracy" class="text-2xl font-black text-cyan-300">100%</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col gap-3">
+        <button id="btnPlayAgain" onclick="restartCurrentSession()" class="btn-candy btn-yellow py-3.5 text-lg">
+          Main Lagi
+        </button>
+        <button id="btnBackToMenu" onclick="showScreen('home')" class="btn-candy btn-blue py-3 text-base">
+          Kembali ke Menu
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: INSTRUCTIONS SCREEN -->
+    <section id="screen-instructions" class="w-full max-w-xl candy-card p-5 sm:p-7 text-center hidden">
+      <h2 id="instructionTitle" class="text-2xl sm:text-3xl font-black text-yellow-300 mb-2">
+        Cara Main
+      </h2>
+      <p id="instructionMainText" class="text-sm sm:text-base text-white/90 font-semibold mb-4">
+        Padankan perkataan dengan gambar, kemudian eja perkataan itu!
+      </p>
+
+      <!-- Animated SVG Demo Flow: Body Part -> Word -> Letters -->
+      <div class="w-full bg-black/40 p-4 rounded-2xl border border-white/20 mb-5">
+        <svg viewBox="0 0 600 160" class="w-full h-auto">
+          <!-- Step 1: Body Part -->
+          <g transform="translate(40, 20)">
+            <rect width="110" height="120" rx="18" fill="#FF2E93" stroke="#FFF" stroke-width="3"/>
+            <!-- Nose icon demo -->
+            <path d="M55,30 C65,55 75,70 65,80 C55,90 40,85 45,75" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"/>
+            <text id="demoTextPart" x="55" y="110" text-anchor="middle" fill="#FFF" font-size="14" font-weight="bold">HIDUNG</text>
+          </g>
+
+          <!-- Arrow 1 -->
+          <path d="M 170,80 L 210,80 M 200,70 L 210,80 L 200,90" stroke="#FFD200" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="stroke-dashoffset" values="20;0" dur="1s" repeatCount="indefinite"/>
+          </path>
+
+          <!-- Step 2: Match Word -->
+          <g transform="translate(230, 45)">
+            <rect width="130" height="70" rx="20" fill="#00E5FF" stroke="#FFF" stroke-width="3"/>
+            <text id="demoTextWord" x="65" y="44" text-anchor="middle" fill="#004D59" font-size="20" font-weight="900">HIDUNG</text>
+          </g>
+
+          <!-- Arrow 2 -->
+          <path d="M 380,80 L 420,80 M 410,70 L 420,80 L 410,90" stroke="#FFD200" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Step 3: Letter Tiles -->
+          <g transform="translate(440, 35)">
+            <rect x="0" y="0" width="34" height="42" rx="8" fill="#FFD200" stroke="#FFF" stroke-width="2"/>
+            <text id="demoLetter1" x="17" y="28" text-anchor="middle" fill="#593500" font-size="18" font-weight="900">H</text>
+            <rect x="40" y="0" width="34" height="42" rx="8" fill="#FF2E93" stroke="#FFF" stroke-width="2"/>
+            <text id="demoLetter2" x="57" y="28" text-anchor="middle" fill="#FFF" font-size="18" font-weight="900">I</text>
+            <rect x="80" y="0" width="34" height="42" rx="8" fill="#76FF03" stroke="#FFF" stroke-width="2"/>
+            <text id="demoLetter3" x="97" y="28" text-anchor="middle" fill="#083300" font-size="18" font-weight="900">D</text>
+            <circle cx="57" cy="65" r="12" fill="#FFF" opacity="0.8">
+              <animateTransform attributeName="transform" type="translate" values="0,0; 40,-30; 0,0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+      </div>
+
+      <button onclick="showScreen('home')" class="btn-candy btn-yellow px-8 py-3 text-base">
+        <span class="lbl-faham">Saya Faham!</span>
+      </button>
+    </section>
+
+    <!-- SCREEN 6: PLAYER PROFILE SCREEN -->
+    <section id="screen-playerProfile" class="w-full max-w-lg candy-card p-5 sm:p-7 text-center hidden">
+      <h2 id="profileTitle" class="text-2xl sm:text-3xl font-black text-yellow-300 mb-1">
+        Profil Pemain
+      </h2>
+      <p id="profileSub" class="text-xs text-pink-300 font-bold mb-4">
+        Statistik dan maklumat kemajuan pemain
+      </p>
+
+      <!-- Student Card -->
+      <div class="bg-black/30 p-4 rounded-2xl border border-white/20 text-left mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-yellow-300 uppercase lbl-studentName">Nama Murid</span>
+          <button onclick="editStudentName()" class="text-xs text-cyan-300 font-bold underline lbl-editName">Kemaskini</button>
+        </div>
+        <div id="profStudentName" class="text-lg font-black text-white">-- (Kosong) --</div>
+      </div>
+
+      <!-- Family Code Card -->
+      <div class="bg-black/30 p-4 rounded-2xl border border-white/20 text-left mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-cyan-300 uppercase lbl-famCode">Kod Keluarga</span>
+          <button onclick="editFamilyCode()" class="text-xs text-pink-300 font-bold underline lbl-editCode">Kemaskini</button>
+        </div>
+        <div id="profFamilyCode" class="text-base font-black text-yellow-200">-- (Kosong) --</div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5 text-left">
+        <div class="bg-purple-950/70 p-2.5 rounded-xl border border-purple-400/40">
+          <div class="text-[10px] uppercase text-purple-200 font-bold lbl-gamesPlayed">Permainan Dimainkan</div>
+          <div id="stGamesPlayed" class="text-xl font-black text-yellow-300">0</div>
+        </div>
+        <div class="bg-purple-950/70 p-2.5 rounded-xl border border-purple-400/40">
+          <div class="text-[10px] uppercase text-purple-200 font-bold lbl-questionsAnswered">Soalan Dijawab</div>
+          <div id="stQuestionsAnswered" class="text-xl font-black text-cyan-300">0</div>
+        </div>
+        <div class="bg-purple-950/70 p-2.5 rounded-xl border border-purple-400/40">
+          <div class="text-[10px] uppercase text-purple-200 font-bold lbl-correctAnswers">Jawapan Betul</div>
+          <div id="stCorrectAnswers" class="text-xl font-black text-lime-400">0</div>
+        </div>
+        <div class="bg-purple-950/70 p-2.5 rounded-xl border border-purple-400/40">
+          <div class="text-[10px] uppercase text-purple-200 font-bold lbl-bestScore">Skor Terbaik</div>
+          <div id="stBestScore" class="text-xl font-black text-yellow-300">0</div>
+        </div>
+        <div class="bg-purple-950/70 p-2.5 rounded-xl border border-purple-400/40 col-span-2 sm:col-span-2">
+          <div class="text-[10px] uppercase text-purple-200 font-bold lbl-overallAccuracy">Ketepatan Keseluruhan</div>
+          <div id="stAccuracy" class="text-xl font-black text-pink-400">0%</div>
+        </div>
+      </div>
+
+      <!-- Family History / Recent Activity -->
+      <div class="bg-black/30 p-3 rounded-2xl border border-white/20 text-left mb-5 max-h-32 overflow-y-auto">
+        <span class="text-xs font-bold text-yellow-200 uppercase lbl-recentAct">Aktiviti Terkini:</span>
+        <div id="stRecentList" class="text-xs text-white/80 mt-1 space-y-1">
+          <div>Tiada aktiviti lagi. Mulakan pengembaraan pertama kamu!</div>
+        </div>
+      </div>
+
+      <button onclick="showScreen('home')" class="btn-candy btn-blue py-3 px-8 text-base">
+        <span class="lbl-back">Kembali</span>
+      </button>
+    </section>
+
+    <!-- SCREEN 7: COLLECTION SCREEN -->
+    <section id="screen-collection" class="w-full max-w-4xl candy-card p-5 sm:p-7 text-center hidden">
+      <h2 id="collectionTitle" class="text-2xl sm:text-3xl font-black text-yellow-300 mb-1">
+        Koleksi Anggota Badan
+      </h2>
+      <p id="collectionSub" class="text-xs sm:text-sm text-pink-300 font-semibold mb-4">
+        Kenali dan terokai semua 23 anggota badan dalam Bahasa Melayu & English
+      </p>
+
+      <!-- Grid of all 23 Body Parts -->
+      <div id="collectionGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[460px] overflow-y-auto p-2 mb-4">
+        <!-- Injected via JavaScript from word pool -->
+      </div>
+
+      <button onclick="showScreen('home')" class="btn-candy btn-purple py-3 px-8 text-base">
+        <span class="lbl-back">Kembali ke Menu</span>
+      </button>
+    </section>
+
+    <!-- SCREEN 8: STUDENT PROFILE SCREEN -->
+    <section id="screen-studentProfileScreen" class="w-full max-w-md candy-card p-6 text-center hidden">
+      <h2 id="studentScreenTitle" class="text-2xl sm:text-3xl font-black text-yellow-300 mb-2">
+        Profil Murid
+      </h2>
+      <p id="studentScreenDesc" class="text-sm text-white/80 mb-5">
+        Masukkan nama murid untuk pengembaraan pembelajaran ini.
+      </p>
+      <input id="inputStudentName" type="text" maxlength="30" placeholder="Nama Murid (Kosong)" class="w-full px-4 py-3 rounded-2xl bg-black/60 border-2 border-yellow-400 text-white font-bold text-center text-lg mb-4 outline-none focus:border-pink-500">
+      <div class="flex flex-col gap-3">
+        <button onclick="saveStudentName()" class="btn-candy btn-yellow py-3 text-base">
+          <span class="lbl-save">Simpan</span>
+        </button>
+        <button onclick="showScreen('home')" class="btn-candy btn-blue py-2.5 text-sm">
+          <span class="lbl-back">Kembali</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 9: FAMILY CODE SCREEN -->
+    <section id="screen-familyCodeScreen" class="w-full max-w-md candy-card p-6 text-center hidden">
+      <h2 id="famCodeScreenTitle" class="text-2xl sm:text-3xl font-black text-cyan-300 mb-2">
+        Kod Keluarga
+      </h2>
+      <p id="famCodeScreenDesc" class="text-sm text-white/80 mb-5">
+        Masukkan Kod Keluarga jika dibekalkan oleh guru atau ibu bapa.
+      </p>
+      <input id="inputFamilyCode" type="text" maxlength="20" placeholder="Kod Keluarga (Kosong)" class="w-full px-4 py-3 rounded-2xl bg-black/60 border-2 border-cyan-400 text-white font-bold text-center text-lg mb-4 outline-none focus:border-yellow-400">
+      <div class="flex flex-col gap-3">
+        <button onclick="saveFamilyCode()" class="btn-candy btn-cyan py-3 text-base">
+          <span class="lbl-save">Simpan</span>
+        </button>
+        <button onclick="showScreen('home')" class="btn-candy btn-blue py-2.5 text-sm">
+          <span class="lbl-back">Kembali</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LOCKED FOOTER: Kinder Klub | All Rights Reserved -->
+  <footer class="relative z-20 w-full py-3 text-center text-xs font-bold tracking-wider text-yellow-200/80 bg-black/40 border-t border-white/10">
+    Kinder Klub | All Rights Reserved
+  </footer>
+
+  <script>
+    /* Centralized Asset Configuration with all provided PNG & JPEG assets */
+    const ASSETS = {
+      // Characters
+      charBoy: 'https://imglink.cc/cdn/4JWjWEQSOj.png',
+      charGirl: 'https://imglink.cc/cdn/yeJBNNVCCO.png',
+      
+      // Explorer Mascot & Emotional Reactions
+      mascotDefault: 'https://imglink.cc/cdn/Z_MnZXrTV4.png',
+      mascotIdle: 'https://imglink.cc/cdn/Dn_mSXYwAR.png',
+      mascotHappyDiscovery: 'https://imglink.cc/cdn/zaiGaVKnBK.png',
+      mascotCorrect: 'https://imglink.cc/cdn/rDWftLUyBP.png',
+      mascotThinking: 'https://imglink.cc/cdn/TiHc9WBX5h.png',
+      mascotMistake: 'https://imglink.cc/cdn/2StPzyGdrl.png',
+      mascotPointing: 'https://imglink.cc/cdn/RVsIgjgzKM.png',
+      mascotMagnifying: 'https://imglink.cc/cdn/_OcdofJFta.png',
+      mascotExcited: 'https://imglink.cc/cdn/zXsJczdIyW.png',
+      mascotCelebration: 'https://imglink.cc/cdn/SFEJ1ebHF7.png',
+
+      // Game UI Props
+      magnifyingGlass: 'https://imglink.cc/cdn/sbKxVPl2Mn.png',
+      explorerClipboard: 'https://imglink.cc/cdn/hzwB7Vslsm.png',
+      displayBoard: 'https://i.postimg.cc/Qx4MXBwd/IMG-6332.png',
+      targetMarker: 'https://i.postimg.cc/ncBC1VPk/IMG-6331.png',
+      memoryCardBack: 'https://i.postimg.cc/Qx1HqNyq/IMG-6333.png',
+      countingToken: 'https://i.postimg.cc/rFxK9yP1/IMG-6334.png',
+
+      // Body Parts Media Mapping
+      bodyParts: {
+        head: 'https://imglink.cc/cdn/GbTdh3ZG6d.png',
+        hair: 'https://imglink.cc/cdn/oNbdtmNXEI.png',
+        eyes: 'https://imglink.cc/cdn/EHxB-Ftrk-.png',
+        ears: 'https://imglink.cc/cdn/lReVZ5O2ZY.png',
+        nose: 'https://imglink.cc/cdn/sObzN8lcwH.png',
+        mouth: 'https://imglink.cc/cdn/ftTBOVVeY-.png',
+        cheeks: 'https://imglink.cc/cdn/Rqxp4jtG42.jpeg',
+        neck: 'https://imglink.cc/cdn/CLGXhdM7Mf.jpeg',
+        shoulders: 'https://imglink.cc/cdn/OFhEDHwsnO.jpeg',
+        arm: 'https://imglink.cc/cdn/JXTnQqLOUU.jpeg',
+        hand: 'https://imglink.cc/cdn/WAYmZyyvCg.jpeg',
+        fingers: 'https://imglink.cc/cdn/wTrysmJu5G.jpeg',
+        tummy: 'https://imglink.cc/cdn/bHjrQu3zcA.jpeg',
+        leg: 'https://imglink.cc/cdn/SSPe1w4Z3F.jpeg',
+        knee: 'https://imglink.cc/cdn/hdRcr4qRgG.jpeg',
+        feet: 'https://i.postimg.cc/wTTv85f3/IMG-6277.jpg',
+        toes: 'https://i.postimg.cc/BQYvq8kJ/IMG-6278.jpg',
+        heel: 'https://imglink.cc/cdn/tu9VDAnOVL.jpeg',
+        elbow: 'https://i.postimg.cc/CLPKFZXF/IMG-6314.jpg',
+        palm: 'https://i.postimg.cc/YqnSp4Zr/IMG-6311.jpg',
+        forehead: 'https://imglink.cc/cdn/T8KY3TqQrE.jpeg',
+        eyebrow: 'https://imglink.cc/cdn/uv-1fdM98h.jpeg',
+        chin: 'https://imglink.cc/cdn/Rs1b1jOsa8.jpeg'
+      },
+
+      // Backgrounds
+      backgroundPortrait: 'https://imglink.cc/cdn/7StITkRCav.jpeg',
+      backgroundLandscape: 'https://imglink.cc/cdn/eQeZ1l03eq.jpeg'
+    };
+
+    /* Web Audio Sound Synthesizer */
+    let audioCtx = null;
+    let isSoundMuted = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSound(type) {
+      if (isSoundMuted) return;
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'pop') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(450, now);
+          osc.frequency.exponentialRampToValueAtTime(850, now + 0.08);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.09);
+        } else if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.1);
+          osc.frequency.setValueAtTime(783.99, now + 0.2);
+          osc.frequency.setValueAtTime(1046.50, now + 0.3);
+          gain.gain.setValueAtTime(0.35, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.55);
+          osc.start(now);
+          osc.stop(now + 0.56);
+        } else if (type === 'gentle') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(280, now);
+          osc.frequency.linearRampToValueAtTime(220, now + 0.15);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.22);
+        } else if (type === 'snap') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.07);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.07);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        }
+      } catch (e) {
+        console.debug('Audio playback note:', e);
+      }
+    }
+
+    function toggleAudio() {
+      isSoundMuted = !isSoundMuted;
+      document.getElementById('soundOnIcon').classList.toggle('hidden', isSoundMuted);
+      document.getElementById('soundOffIcon').classList.toggle('hidden', !isSoundMuted);
+      if (!isSoundMuted) playSound('pop');
+    }
+
+    const BODY_PARTS_POOL = [
+      { id: 'head', bm: 'Kepala', en: 'Head', img: ASSETS.bodyParts.head },
+      { id: 'hair', bm: 'Rambut', en: 'Hair', img: ASSETS.bodyParts.hair },
+      { id: 'eyes', bm: 'Mata', en: 'Eyes', img: ASSETS.bodyParts.eyes },
+      { id: 'ears', bm: 'Telinga', en: 'Ears', img: ASSETS.bodyParts.ears },
+      { id: 'nose', bm: 'Hidung', en: 'Nose', img: ASSETS.bodyParts.nose },
+      { id: 'mouth', bm: 'Mulut', en: 'Mouth', img: ASSETS.bodyParts.mouth },
+      { id: 'cheeks', bm: 'Pipi', en: 'Cheeks', img: ASSETS.bodyParts.cheeks },
+      { id: 'neck', bm: 'Leher', en: 'Neck', img: ASSETS.bodyParts.neck },
+      { id: 'shoulders', bm: 'Bahu', en: 'Shoulders', img: ASSETS.bodyParts.shoulders },
+      { id: 'arm', bm: 'Lengan', en: 'Arm', img: ASSETS.bodyParts.arm },
+      { id: 'hand', bm: 'Tangan', en: 'Hand', img: ASSETS.bodyParts.hand },
+      { id: 'fingers', bm: 'Jari', en: 'Fingers', img: ASSETS.bodyParts.fingers },
+      { id: 'tummy', bm: 'Perut', en: 'Tummy', img: ASSETS.bodyParts.tummy },
+      { id: 'leg', bm: 'Kaki', en: 'Leg', img: ASSETS.bodyParts.leg },
+      { id: 'knee', bm: 'Lutut', en: 'Knee', img: ASSETS.bodyParts.knee },
+      { id: 'feet', bm: 'Kaki', en: 'Feet', img: ASSETS.bodyParts.feet },
+      { id: 'toes', bm: 'Jari kaki', en: 'Toes', img: ASSETS.bodyParts.toes },
+      { id: 'heel', bm: 'Tumit', en: 'Heel', img: ASSETS.bodyParts.heel },
+      { id: 'elbow', bm: 'Siku', en: 'Elbow', img: ASSETS.bodyParts.elbow },
+      { id: 'palm', bm: 'Tapak tangan', en: 'Palm', img: ASSETS.bodyParts.palm },
+      { id: 'forehead', bm: 'Dahi', en: 'Forehead', img: ASSETS.bodyParts.forehead },
+      { id: 'eyebrow', bm: 'Kening', en: 'Eyebrow', img: ASSETS.bodyParts.eyebrow },
+      { id: 'chin', bm: 'Dagu', en: 'Chin', img: ASSETS.bodyParts.chin }
+    ];
+
+    /* Render Body Part Card with OBJECT-CONTAIN to show the FULL image without cropping */
+    function renderBodyPartCard(part, sizeClass = "w-full h-full") {
+      const imgUrl = part.img || ASSETS.bodyParts[part.id];
+      return `
+        <div class="${sizeClass} relative rounded-2xl overflow-hidden p-2 bg-gradient-to-b from-white/20 via-purple-950/40 to-purple-950/80 border-2 border-white/40 shadow-lg flex items-center justify-center group">
+          <img src="${imgUrl}" alt="${part.bm}" class="w-full h-full object-contain filter drop-shadow rounded-xl transition transform group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/180x180/2b0d59/ffffff?text=${encodeURIComponent(part.bm)}';">
+        </div>
+      `;
+    }
+
+    /* Mascot Reactions Rendering */
+    function renderMascot(state = 'idle') {
+      let mascotUrl = ASSETS.mascotIdle;
+      if (state === 'happy' || state === 'celebration') {
+        mascotUrl = ASSETS.mascotCelebration;
+      } else if (state === 'correct') {
+        mascotUrl = ASSETS.mascotCorrect;
+      } else if (state === 'excited') {
+        mascotUrl = ASSETS.mascotExcited;
+      } else if (state === 'mistake') {
+        mascotUrl = ASSETS.mascotMistake;
+      } else if (state === 'thinking') {
+        mascotUrl = ASSETS.mascotThinking;
+      } else if (state === 'pointing') {
+        mascotUrl = ASSETS.mascotPointing;
+      } else if (state === 'magnifying') {
+        mascotUrl = ASSETS.mascotMagnifying;
+      }
+
+      return `<img src="${mascotUrl}" alt="Mascot ${state}" class="w-full h-full object-contain filter drop-shadow-xl" onerror="this.onerror=null; this.src='${ASSETS.mascotDefault}';">`;
+    }
+
+    const STORAGE_KEY = 'kinderKlub_anggotaBadan_playerProfile';
+
+    function loadProfile() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) return JSON.parse(data);
+      } catch (e) {
+        console.debug('Storage load err:', e);
+      }
+      return {
+        studentName: '',
+        familyCode: '',
+        gamesPlayed: 0,
+        questionsAnswered: 0,
+        correctAnswers: 0,
+        bestScore: 0,
+        recentActivity: [],
+        lang: 'ms'
+      };
+    }
+
+    function saveProfile(prof) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(prof));
+      } catch (e) {
+        console.debug('Storage save err:', e);
+      }
+    }
+
+    let userProfile = loadProfile();
+    let currentLang = userProfile.lang || 'ms';
+
+    const I18N = {
+      ms: {
+        appTitle: "Anggota Badan Adventure",
+        appSubtitle: "Jom padankan dan eja nama anggota badan!",
+        btnStartPlaying: "Mula Main",
+        btnPlayerProfile: "Profil Pemain",
+        btnCollection: "Koleksi",
+        btnFamilyCode: "Kod Keluarga",
+        btnStudentProfile: "Profil Murid",
+        sessionTitle: "Pilih Permainan",
+        sessionDesc: "Pilih bilangan soalan untuk pengembaraan kamu!",
+        session5: "5 Soalan",
+        session10: "10 Soalan",
+        session20: "20 Soalan",
+        sessionFree: "Main Bebas",
+        backToMenu: "Kembali ke Menu",
+        back: "Kembali",
+        save: "Simpan",
+        exit: "Keluar",
+        question: "Soalan",
+        freePlayTag: "Main Bebas",
+        greatJob: "Hebat!",
+        gameComplete: "Permainan Selesai!",
+        score: "Skor",
+        correctAnswers: "Jawapan Betul",
+        accuracy: "Ketepatan",
+        playAgain: "Main Lagi",
+        howToPlay: "Cara Main",
+        instructionText: "Padankan perkataan dengan gambar, kemudian eja perkataan itu!",
+        iUnderstand: "Saya Faham!",
+        studentName: "Nama Murid",
+        studentScreenDesc: "Masukkan nama murid untuk pengembaraan pembelajaran ini.",
+        studentPlaceholder: "Nama Murid (Kosong)",
+        familyCode: "Kod Keluarga",
+        famCodeScreenDesc: "Masukkan Kod Keluarga jika dibekalkan oleh guru atau ibu bapa.",
+        famCodePlaceholder: "Kod Keluarga (Kosong)",
+        profileSub: "Statistik dan maklumat kemajuan pemain",
+        gamesPlayed: "Permainan Dimainkan",
+        questionsAnswered: "Soalan Dijawab",
+        bestScore: "Skor Terbaik",
+        overallAccuracy: "Ketepatan Keseluruhan",
+        recentActivity: "Aktiviti Terkini",
+        emptyPlaceholder: "-- (Kosong) --",
+        edit: "Kemaskini",
+        noActivity: "Tiada aktiviti lagi. Mulakan pengembaraan pertama kamu!",
+        promptWhatIsThis: "Ini apa?",
+        promptSpellThis: "Eja perkataan ini.",
+        promptMissing: "Lengkapkan huruf yang hilang.",
+        promptConnect: "Tarik atau tekan perkataan ke gambar yang sepadan!",
+        promptOrder: "Susun huruf mengikut perkataan!",
+        tryAgain: "Cuba lagi!",
+        correctFeedback: "Syabas! Betul!",
+        collectionTitle: "Koleksi Anggota Badan",
+        collectionDesc: "Kenali dan terokai semua 23 anggota badan dalam Bahasa Melayu & English",
+        demoWord: "HIDUNG",
+        demoLetters: ["H", "I", "D"]
+      },
+      en: {
+        appTitle: "Body Explorer Adventure",
+        appSubtitle: "Let's match and spell the body-part names!",
+        btnStartPlaying: "Start Playing",
+        btnPlayerProfile: "Player Profile",
+        btnCollection: "Collection",
+        btnFamilyCode: "Family Code",
+        btnStudentProfile: "Student Profile",
+        sessionTitle: "Choose a Game",
+        sessionDesc: "Select how many questions for your adventure!",
+        session5: "5 Questions",
+        session10: "10 Questions",
+        session20: "20 Questions",
+        sessionFree: "Free Play",
+        backToMenu: "Back to Menu",
+        back: "Back",
+        save: "Save",
+        exit: "Exit",
+        question: "Question",
+        freePlayTag: "Free Play",
+        greatJob: "Great Job!",
+        gameComplete: "Game Complete!",
+        score: "Score",
+        correctAnswers: "Correct Answers",
+        accuracy: "Accuracy",
+        playAgain: "Play Again",
+        howToPlay: "How to Play",
+        instructionText: "Match the word to the picture, then spell the word!",
+        iUnderstand: "I Understand!",
+        studentName: "Student Profile",
+        studentScreenDesc: "Enter student name for this learning adventure.",
+        studentPlaceholder: "Student Name (Blank)",
+        familyCode: "Family Code",
+        famCodeScreenDesc: "Enter Family Code if provided by teacher or parents.",
+        famCodePlaceholder: "Family Code (Blank)",
+        profileSub: "Player progress statistics and information",
+        gamesPlayed: "Games Played",
+        questionsAnswered: "Questions Answered",
+        bestScore: "Best Score",
+        overallAccuracy: "Overall Accuracy",
+        recentActivity: "Recent Activity",
+        emptyPlaceholder: "-- (Blank) --",
+        edit: "Update",
+        noActivity: "No activity yet. Start your first adventure!",
+        promptWhatIsThis: "What is this?",
+        promptSpellThis: "Spell this word.",
+        promptMissing: "Pick the missing letter.",
+        promptConnect: "Drag or tap the word to the matching picture!",
+        promptOrder: "Arrange the letters in correct order!",
+        tryAgain: "Try again!",
+        correctFeedback: "Awesome! Correct!",
+        collectionTitle: "Body Parts Collection",
+        collectionDesc: "Discover and explore all 23 body parts in Malay & English",
+        demoWord: "NOSE",
+        demoLetters: ["N", "O", "S"]
+      }
+    };
+
+    function applyTranslations() {
+      const t = I18N[currentLang];
+      document.getElementById('langFlag').textContent = currentLang === 'ms' ? '🇲🇾' : '🇬🇧';
+      document.getElementById('langLabel').textContent = currentLang.toUpperCase();
+      document.getElementById('appTitleText').textContent = t.appTitle;
+      document.getElementById('appSubTitleText').textContent = t.appSubtitle;
+      document.getElementById('mascotBubbleHome').textContent = t.appSubtitle;
+      document.getElementById('btnStartPlaying').textContent = t.btnStartPlaying;
+      document.getElementById('btnPlayerProfile').textContent = t.btnPlayerProfile;
+      document.getElementById('btnCollection').textContent = t.btnCollection;
+      document.getElementById('btnFamilyCode').textContent = t.btnFamilyCode;
+      document.getElementById('btnStudentProfile').textContent = t.btnStudentProfile;
+      
+      document.getElementById('sessionSelectTitle').textContent = t.sessionTitle;
+      document.getElementById('sessionSelectDesc').textContent = t.sessionDesc;
+      document.querySelectorAll('.session-opt-5').forEach(el => el.textContent = t.session5);
+      document.querySelectorAll('.session-opt-10').forEach(el => el.textContent = t.session10);
+      document.querySelectorAll('.session-opt-20').forEach(el => el.textContent = t.session20);
+      document.querySelectorAll('.session-opt-free').forEach(el => el.textContent = t.sessionFree);
+      document.querySelectorAll('.lbl-back').forEach(el => el.textContent = t.back);
+      document.querySelectorAll('.lbl-exit').forEach(el => el.textContent = t.exit);
+      document.querySelectorAll('.lbl-save').forEach(el => el.textContent = t.save);
+
+      document.getElementById('resultHeading').textContent = t.greatJob;
+      document.getElementById('resultSubHeading').textContent = t.gameComplete;
+      document.querySelectorAll('.lbl-score').forEach(el => el.textContent = t.score);
+      document.querySelectorAll('.lbl-correct').forEach(el => el.textContent = t.correctAnswers);
+      document.querySelectorAll('.lbl-accuracy').forEach(el => el.textContent = t.accuracy);
+      document.getElementById('btnPlayAgain').textContent = t.playAgain;
+      document.getElementById('btnBackToMenu').textContent = t.backToMenu;
+
+      document.getElementById('instructionTitle').textContent = t.howToPlay;
+      document.getElementById('instructionMainText').textContent = t.instructionText;
+      document.querySelectorAll('.lbl-faham').forEach(el => el.textContent = t.iUnderstand);
+
+      const dPart = document.getElementById('demoTextPart');
+      const dWord = document.getElementById('demoTextWord');
+      const dL1 = document.getElementById('demoLetter1');
+      const dL2 = document.getElementById('demoLetter2');
+      const dL3 = document.getElementById('demoLetter3');
+      if (dPart) dPart.textContent = t.demoWord;
+      if (dWord) dWord.textContent = t.demoWord;
+      if (dL1) dL1.textContent = t.demoLetters[0];
+      if (dL2) dL2.textContent = t.demoLetters[1];
+      if (dL3) dL3.textContent = t.demoLetters[2];
+
+      document.getElementById('profileTitle').textContent = t.btnPlayerProfile;
+      const profSub = document.getElementById('profileSub');
+      if (profSub) profSub.textContent = t.profileSub;
+      document.querySelectorAll('.lbl-studentName').forEach(el => el.textContent = t.studentName);
+      document.querySelectorAll('.lbl-famCode').forEach(el => el.textContent = t.familyCode);
+      document.querySelectorAll('.lbl-editName').forEach(el => el.textContent = t.edit);
+      document.querySelectorAll('.lbl-editCode').forEach(el => el.textContent = t.edit);
+      document.querySelectorAll('.lbl-gamesPlayed').forEach(el => el.textContent = t.gamesPlayed);
+      document.querySelectorAll('.lbl-questionsAnswered').forEach(el => el.textContent = t.questionsAnswered);
+      document.querySelectorAll('.lbl-correctAnswers').forEach(el => el.textContent = t.correctAnswers);
+      document.querySelectorAll('.lbl-bestScore').forEach(el => el.textContent = t.bestScore);
+      document.querySelectorAll('.lbl-overallAccuracy').forEach(el => el.textContent = t.overallAccuracy);
+      document.querySelectorAll('.lbl-recentAct').forEach(el => el.textContent = t.recentActivity + ':');
+
+      document.getElementById('studentScreenTitle').textContent = t.studentName;
+      const studDesc = document.getElementById('studentScreenDesc');
+      if (studDesc) studDesc.textContent = t.studentScreenDesc;
+      const inputStud = document.getElementById('inputStudentName');
+      if (inputStud) inputStud.placeholder = t.studentPlaceholder;
+
+      document.getElementById('famCodeScreenTitle').textContent = t.familyCode;
+      const famDesc = document.getElementById('famCodeScreenDesc');
+      if (famDesc) famDesc.textContent = t.famCodeScreenDesc;
+      const inputFam = document.getElementById('inputFamilyCode');
+      if (inputFam) inputFam.placeholder = t.famCodePlaceholder;
+
+      document.getElementById('collectionTitle').textContent = t.collectionTitle;
+      document.getElementById('collectionSub').textContent = t.collectionDesc;
+
+      updateProfileUI();
+      renderCollectionItems();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ms' ? 'en' : 'ms';
+      userProfile.lang = currentLang;
+      saveProfile(userProfile);
+      playSound('pop');
+      applyTranslations();
+      if (activeSession.isRunning && activeSession.currentTask) {
+        updateGameplayHeader();
+        renderCurrentTask();
+      }
+    }
+
+    const SCREENS = [
+      'home', 'sessionSelect', 'gameplay', 'result',
+      'instructions', 'playerProfile', 'collection',
+      'studentProfileScreen', 'familyCodeScreen'
+    ];
+
+    function showScreen(screenId) {
+      playSound('pop');
+      SCREENS.forEach(id => {
+        const el = document.getElementById('screen-' + id);
+        if (el) el.classList.add('hidden');
+      });
+      const target = document.getElementById('screen-' + screenId);
+      if (target) target.classList.remove('hidden');
+
+      if (screenId === 'home') {
+        document.getElementById('homeMascotContainer').innerHTML = renderMascot('idle');
+      } else if (screenId === 'playerProfile') {
+        updateProfileUI();
+      } else if (screenId === 'collection') {
+        renderCollectionItems();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProfileUI() {
+      const t = I18N[currentLang];
+      document.getElementById('profStudentName').textContent = userProfile.studentName.trim() || t.emptyPlaceholder;
+      document.getElementById('profFamilyCode').textContent = userProfile.familyCode.trim() || t.emptyPlaceholder;
+      document.getElementById('stGamesPlayed').textContent = userProfile.gamesPlayed;
+      document.getElementById('stQuestionsAnswered').textContent = userProfile.questionsAnswered;
+      document.getElementById('stCorrectAnswers').textContent = userProfile.correctAnswers;
+      document.getElementById('stBestScore').textContent = userProfile.bestScore;
+      
+      const acc = userProfile.questionsAnswered > 0 
+        ? Math.round((userProfile.correctAnswers / userProfile.questionsAnswered) * 100) 
+        : 0;
+      document.getElementById('stAccuracy').textContent = acc + '%';
+
+      const recentList = document.getElementById('stRecentList');
+      if (userProfile.recentActivity && userProfile.recentActivity.length > 0) {
+        recentList.innerHTML = userProfile.recentActivity.map(act => `
+          <div class="border-b border-white/10 pb-1">
+            <span class="text-yellow-300 font-bold">${act.date}</span> — ${act.type}: 
+            <span class="text-lime-300 font-extrabold">+${act.score} pts</span> (${act.accuracy}%)
+          </div>
+        `).join('');
+      } else {
+        recentList.innerHTML = `<div>${t.noActivity}</div>`;
+      }
+    }
+
+    function editStudentName() {
+      document.getElementById('inputStudentName').value = userProfile.studentName;
+      showScreen('studentProfileScreen');
+    }
+
+    function saveStudentName() {
+      const val = document.getElementById('inputStudentName').value.trim();
+      userProfile.studentName = val;
+      saveProfile(userProfile);
+      playSound('pop');
+      showScreen('playerProfile');
+    }
+
+    function editFamilyCode() {
+      document.getElementById('inputFamilyCode').value = userProfile.familyCode;
+      showScreen('familyCodeScreen');
+    }
+
+    function saveFamilyCode() {
+      const val = document.getElementById('inputFamilyCode').value.trim();
+      userProfile.familyCode = val;
+      saveProfile(userProfile);
+      playSound('pop');
+      showScreen('playerProfile');
+    }
+
+    function renderCollectionItems() {
+      const grid = document.getElementById('collectionGrid');
+      if (!grid) return;
+      grid.innerHTML = BODY_PARTS_POOL.map(part => {
+        const word = currentLang === 'ms' ? part.bm : part.en;
+        const sub = currentLang === 'ms' ? part.en : part.bm;
+        return `
+          <div class="bg-black/50 border-2 border-white/20 p-2.5 rounded-2xl flex flex-col items-center hover:scale-105 transition transform shadow-md">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 mb-2">
+              ${renderBodyPartCard(part)}
+            </div>
+            <div class="font-extrabold text-sm text-yellow-300 text-center uppercase tracking-wide">${word}</div>
+            <div class="text-[11px] text-pink-300/80 font-bold text-center italic">${sub}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let activeSession = {
+      totalQuestions: 5,
+      currentQuestionIndex: 0,
+      score: 0,
+      correctCount: 0,
+      totalAttempts: 0,
+      isRunning: false,
+      tasks: [],
+      currentTask: null
+    };
+
+    function startSession(numQuestions) {
+      playSound('pop');
+      activeSession.totalQuestions = numQuestions;
+      activeSession.currentQuestionIndex = 0;
+      activeSession.score = 0;
+      activeSession.correctCount = 0;
+      activeSession.totalAttempts = 0;
+      activeSession.isRunning = true;
+      activeSession.tasks = generateSessionTasks(numQuestions === 0 ? 50 : numQuestions);
+
+      showScreen('gameplay');
+      loadNextTask();
+    }
+
+    function restartCurrentSession() {
+      startSession(activeSession.totalQuestions);
+    }
+
+    function confirmExitGame() {
+      playSound('gentle');
+      activeSession.isRunning = false;
+      showScreen('home');
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function generateSessionTasks(count) {
+      const shuffledParts = shuffleArray(BODY_PARTS_POOL);
+      const variations = ['A', 'B', 'C', 'D', 'E'];
+      const tasks = [];
+
+      for (let i = 0; i < count; i++) {
+        const bodyPart = shuffledParts[i % shuffledParts.length];
+        const variation = variations[i % variations.length];
+        tasks.push({
+          bodyPart,
+          variation,
+          resolved: false
+        });
+      }
+      return shuffleArray(tasks);
+    }
+
+    function updateGameplayHeader() {
+      const t = I18N[currentLang];
+      const progEl = document.getElementById('progressIndicator');
+      const tagEl = document.getElementById('sessionTag');
+      document.getElementById('gameScoreDisplay').textContent = activeSession.score;
+
+      if (activeSession.totalQuestions === 0) {
+        progEl.textContent = `${t.question} ${activeSession.currentQuestionIndex + 1}`;
+        tagEl.textContent = t.freePlayTag;
+      } else {
+        progEl.textContent = `${t.question} ${activeSession.currentQuestionIndex + 1} / ${activeSession.totalQuestions}`;
+        tagEl.textContent = `${activeSession.totalQuestions} ${t.question}`;
+      }
+    }
+
+    function setMascotState(state, message) {
+      const mascotEl = document.getElementById('gameplayMascot');
+      const bubbleEl = document.getElementById('gameSpeechBubble');
+      if (mascotEl) mascotEl.innerHTML = renderMascot(state);
+      if (bubbleEl) {
+        bubbleEl.textContent = message;
+        bubbleEl.classList.remove('anim-wobble', 'anim-bounce');
+        void bubbleEl.offsetWidth;
+        if (state === 'happy') bubbleEl.classList.add('anim-bounce');
+        if (state === 'mistake') bubbleEl.classList.add('anim-wobble');
+      }
+    }
+
+    function loadNextTask() {
+      if (activeSession.totalQuestions > 0 && activeSession.currentQuestionIndex >= activeSession.totalQuestions) {
+        finishGameSession();
+        return;
+      }
+
+      const task = activeSession.tasks[activeSession.currentQuestionIndex];
+      activeSession.currentTask = task;
+      updateGameplayHeader();
+      renderCurrentTask();
+    }
+
+    function renderCurrentTask() {
+      const task = activeSession.currentTask;
+      if (!task) return;
+
+      const svg = document.getElementById('svgConnectCanvas');
+      if (svg) svg.innerHTML = '';
+
+      const container = document.getElementById('taskContent');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (task.variation === 'A') {
+        renderVariationA(task, container);
+      } else if (task.variation === 'B') {
+        renderVariationB(task, container);
+      } else if (task.variation === 'C') {
+        renderVariationC(task, container);
+      } else if (task.variation === 'D') {
+        renderVariationD(task, container);
+      } else if (task.variation === 'E') {
+        renderVariationE(task, container);
+      }
+    }
+
+    /* VARIATION A: PILIHAN JAWAPAN (TERUS NEXT JIKA SALAH) */
+    function renderVariationA(task, container) {
+      const t = I18N[currentLang];
+      const targetWord = currentLang === 'ms' ? task.bodyPart.bm.toUpperCase() : task.bodyPart.en.toUpperCase();
+      setMascotState('pointing', t.promptWhatIsThis);
+
+      const distractors = shuffleArray(BODY_PARTS_POOL.filter(p => p.id !== task.bodyPart.id))
+        .slice(0, 3)
+        .map(p => currentLang === 'ms' ? p.bm.toUpperCase() : p.en.toUpperCase());
+      const choices = shuffleArray([targetWord, ...distractors]);
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center w-full">
+          <!-- Card gambar besar penuh (full mata, tidak dipotong) -->
+          <div class="w-40 h-36 sm:w-52 sm:h-44 mb-4 transform hover:scale-105 transition">
+            ${renderBodyPartCard(task.bodyPart)}
+          </div>
+          <div id="choicesGrid" class="grid grid-cols-2 gap-3 w-full max-w-md">
+            ${choices.map(c => `
+              <button onclick="handleVariationAChoice('${c}', '${targetWord}', this)" class="btn-candy btn-purple py-3.5 text-base sm:text-lg">
+                ${c}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    window.handleVariationAChoice = function(chosen, target, btnElement) {
+      const t = I18N[currentLang];
+      activeSession.totalAttempts++;
+
+      // Kunci semua butang serta-merta untuk elakkan tekan berkali-kali
+      const allBtns = document.querySelectorAll('#choicesGrid button');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (chosen === target) {
+        playSound('correct');
+        btnElement.classList.remove('btn-purple');
+        btnElement.classList.add('btn-yellow', 'anim-bounce');
+        setMascotState('correct', t.correctFeedback);
+        
+        // Teruskan ke fasa 2: aktiviti mengeja perkataan ini
+        setTimeout(() => {
+          renderSpellingStage(target, document.getElementById('taskContent'));
+        }, 600);
+      } else {
+        // JAWAP PADA SALAH: Terus next!
+        playSound('gentle');
+        btnElement.classList.remove('btn-purple');
+        btnElement.classList.add('wrong-attempt', 'anim-wobble');
+
+        // Tunjukkan jawapan yang betul seketika supaya murid tahu jawapannya
+        allBtns.forEach(b => {
+          if (b.textContent.trim() === target) {
+            b.classList.remove('btn-purple');
+            b.classList.add('btn-yellow');
+          }
+        });
+
+        setMascotState('mistake', t.tryAgain);
+
+        // Terus bergerak ke soalan seterusnya selepas maklum balas ringkas
+        setTimeout(() => {
+          activeSession.currentQuestionIndex++;
+          loadNextTask();
+        }, 1200);
+      }
+    };
+
+    /* VARIATION B: GAMBAR + HURUF RAWAK */
+    function renderVariationB(task, container) {
+      const t = I18N[currentLang];
+      const targetWord = currentLang === 'ms' ? task.bodyPart.bm.toUpperCase() : task.bodyPart.en.toUpperCase();
+      setMascotState('thinking', t.promptSpellThis);
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center w-full">
+          <div class="w-36 h-32 sm:w-44 sm:h-40 mb-3">
+            ${renderBodyPartCard(task.bodyPart)}
+          </div>
+          <div id="spellingSubArea" class="w-full flex flex-col items-center"></div>
+        </div>
+      `;
+      renderSpellingStage(targetWord, document.getElementById('spellingSubArea'));
+    }
+
+    /* VARIATION C: HURUF HILANG (TERUS NEXT JIKA SALAH) */
+    function renderVariationC(task, container) {
+      const t = I18N[currentLang];
+      const targetWord = currentLang === 'ms' ? task.bodyPart.bm.toUpperCase() : task.bodyPart.en.toUpperCase();
+      setMascotState('magnifying', t.promptMissing);
+
+      const letters = targetWord.replace(/\s+/g, '').split('');
+      const missingIndex = Math.floor(Math.random() * letters.length);
+      const missingLetter = letters[missingIndex];
+
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').filter(l => l !== missingLetter);
+      const distractors = shuffleArray(alphabet).slice(0, 3);
+      const letterChoices = shuffleArray([missingLetter, ...distractors]);
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center w-full">
+          <div class="w-36 h-32 sm:w-44 sm:h-40 mb-3">
+            ${renderBodyPartCard(task.bodyPart)}
+          </div>
+          
+          <!-- Slots with missing gap -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+            ${letters.map((char, idx) => {
+              if (idx === missingIndex) {
+                return `<div id="missingSlot" class="letter-slot border-yellow-300 bg-yellow-400/20 text-yellow-300">?</div>`;
+              }
+              return `<div class="letter-slot filled">${char}</div>`;
+            }).join('')}
+          </div>
+
+          <!-- Letter Choices -->
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            ${letterChoices.map(l => `
+              <button onclick="handleMissingLetterChoice('${l}', '${missingLetter}', this)" class="letter-tile tile-blue text-2xl font-black">
+                ${l}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    window.handleMissingLetterChoice = function(chosen, target, tileBtn) {
+      const t = I18N[currentLang];
+      activeSession.totalAttempts++;
+
+      const allBtns = document.querySelectorAll('#taskContent .letter-tile');
+      allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+      if (chosen === target) {
+        playSound('correct');
+        const slot = document.getElementById('missingSlot');
+        if (slot) {
+          slot.textContent = chosen;
+          slot.classList.remove('border-yellow-300', 'bg-yellow-400/20');
+          slot.classList.add('filled', 'anim-bounce');
+        }
+        tileBtn.classList.add('tile-purple', 'anim-bounce');
+        completeTaskSuccess();
+      } else {
+        // Salah: Tunjukkan huruf yang betul dan terus next!
+        playSound('gentle');
+        tileBtn.classList.add('anim-wobble', 'wrong-attempt');
+        
+        const slot = document.getElementById('missingSlot');
+        if (slot) {
+          slot.textContent = target;
+          slot.classList.add('filled');
+        }
+
+        setMascotState('mistake', t.tryAgain);
+
+        setTimeout(() => {
+          activeSession.currentQuestionIndex++;
+          loadNextTask();
+        }, 1200);
+      }
+    };
+
+    /* HELPER: Derange array so no word is opposite its matching picture */
+    function getDerangedPairs(currentPart) {
+      const otherParts = shuffleArray(BODY_PARTS_POOL.filter(p => p.id !== currentPart.id)).slice(0, 2);
+      const matchSet = shuffleArray([currentPart, ...otherParts]);
+      
+      let wordSet = shuffleArray([...matchSet]);
+      let attempts = 0;
+      // Derangement check: make sure no element shares the exact same row index
+      while (attempts < 30 && matchSet.some((p, idx) => p.id === wordSet[idx].id)) {
+        wordSet = shuffleArray([...matchSet]);
+        attempts++;
+      }
+      // Guaranteed manual swap if any row still collides
+      for (let i = 0; i < matchSet.length; i++) {
+        if (matchSet[i].id === wordSet[i].id) {
+          const nextIdx = (i + 1) % matchSet.length;
+          [wordSet[i], wordSet[nextIdx]] = [wordSet[nextIdx], wordSet[i]];
+        }
+      }
+      return { matchSet, wordSet };
+    }
+
+    /* VARIATION D: DRAG & TAP CONNECT MATCHING */
+    function renderVariationD(task, container) {
+      const t = I18N[currentLang];
+      setMascotState('pointing', t.promptConnect);
+
+      const { matchSet, wordSet } = getDerangedPairs(task.bodyPart);
+
+      container.innerHTML = `
+        <div class="w-full flex flex-col items-center">
+          <div class="text-xs sm:text-sm font-extrabold text-yellow-300/90 mb-3 text-center tracking-wide">
+            👆 ${currentLang === 'ms' ? 'Tekan atau tarik perkataan ke gambar!' : 'Tap or drag the word to the picture!'}
+          </div>
+
+          <div class="w-full flex justify-between items-center gap-4 sm:gap-8 px-2 sm:px-6 py-2 relative max-w-md" id="connectStage">
+            <!-- Left: Body Part Visual Targets (Single clean card with zero overlap) -->
+            <div class="flex flex-col gap-4 sm:gap-5 flex-1 max-w-[135px] sm:max-w-[160px]">
+              ${matchSet.map(part => {
+                const imgUrl = part.img || ASSETS.bodyParts[part.id];
+                return `
+                  <div id="target-${part.id}" data-id="${part.id}" class="connect-target">
+                    <img src="${imgUrl}" alt="${part.bm}" class="w-full h-full object-contain filter drop-shadow rounded-xl pointer-events-none" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/180x180/2b0d59/ffffff?text=${encodeURIComponent(part.bm)}';">
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <!-- Right: Word Cards (Aligned with same height & zero overlap) -->
+            <div class="flex flex-col gap-4 sm:gap-5 flex-1 max-w-[145px] sm:max-w-[175px]">
+              ${wordSet.map(part => {
+                const word = currentLang === 'ms' ? part.bm.toUpperCase() : part.en.toUpperCase();
+                return `
+                  <div id="source-${part.id}" data-id="${part.id}" class="connect-word">
+                    ${word}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      setupConnectMatching(matchSet.length);
+    }
+
+    function setupConnectMatching(totalPairs) {
+      const svgCanvas = document.getElementById('svgConnectCanvas');
+      const stage = document.getElementById('dynamicTaskContainer');
+      let solvedCount = 0;
+      let activeDragEl = null;
+      let tempLine = null;
+      let selectedWordEl = null;
+      let selectedTargetEl = null;
+
+      function syncSvgBounds() {
+        if (!svgCanvas || !stage) return;
+        const sRect = stage.getBoundingClientRect();
+        svgCanvas.setAttribute('width', sRect.width);
+        svgCanvas.setAttribute('height', sRect.height);
+        svgCanvas.setAttribute('viewBox', `0 0 ${sRect.width} ${sRect.height}`);
+      }
+      syncSvgBounds();
+      window.addEventListener('resize', syncSvgBounds, { once: true });
+
+      function getCenter(el) {
+        const eRect = el.getBoundingClientRect();
+        const sRect = stage.getBoundingClientRect();
+        return {
+          x: eRect.left - sRect.left + eRect.width / 2,
+          y: eRect.top - sRect.top + eRect.height / 2
+        };
+      }
+
+      function drawPermanentConnection(sourceEl, targetEl) {
+        const start = getCenter(sourceEl);
+        const end = getCenter(targetEl);
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const dx = Math.abs(start.x - end.x) * 0.45;
+        const d = `M ${start.x} ${start.y} C ${start.x - dx} ${start.y}, ${end.x + dx} ${end.y}, ${end.x} ${end.y}`;
+        
+        path.setAttribute('d', d);
+        path.setAttribute('stroke', '#76FF03');
+        path.setAttribute('stroke-width', '6');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('fill', 'none');
+        path.style.filter = 'drop-shadow(0 0 8px #76FF03)';
+        svgCanvas.appendChild(path);
+      }
+
+      function markMatchSuccess(wordEl, targetEl) {
+        playSound('correct');
+        wordEl.dataset.matched = "true";
+        targetEl.dataset.matched = "true";
+        wordEl.classList.remove('item-selected');
+        wordEl.classList.add('item-matched');
+        targetEl.classList.remove('item-selected');
+        targetEl.classList.add('item-matched');
+
+        drawPermanentConnection(wordEl, targetEl);
+        setMascotState('correct', I18N[currentLang].correctFeedback);
+
+        solvedCount++;
+        selectedWordEl = null;
+        selectedTargetEl = null;
+
+        if (solvedCount >= totalPairs) {
+          completeTaskSuccess();
+        }
+      }
+
+      function triggerMismatch(el1, el2) {
+        playSound('gentle');
+        activeSession.totalAttempts++;
+        if (el1) el1.classList.add('anim-wobble');
+        if (el2) el2.classList.add('anim-wobble');
+        setMascotState('mistake', I18N[currentLang].tryAgain);
+
+        setTimeout(() => {
+          if (el1) el1.classList.remove('anim-wobble', 'item-selected');
+          if (el2) el2.classList.remove('anim-wobble', 'item-selected');
+        }, 500);
+
+        selectedWordEl = null;
+        selectedTargetEl = null;
+      }
+
+      // Tap-to-match
+      const words = document.querySelectorAll('.connect-word');
+      const targets = document.querySelectorAll('.connect-target');
+
+      words.forEach(w => {
+        w.addEventListener('click', () => {
+          if (w.dataset.matched) return;
+          playSound('pop');
+
+          if (selectedTargetEl) {
+            if (selectedTargetEl.dataset.id === w.dataset.id) {
+              markMatchSuccess(w, selectedTargetEl);
+            } else {
+              triggerMismatch(w, selectedTargetEl);
+            }
+            return;
+          }
+
+          if (selectedWordEl === w) {
+            w.classList.remove('item-selected');
+            selectedWordEl = null;
+          } else {
+            words.forEach(other => other.classList.remove('item-selected'));
+            w.classList.add('item-selected');
+            selectedWordEl = w;
+          }
+        });
+      });
+
+      targets.forEach(tgt => {
+        tgt.addEventListener('click', () => {
+          if (tgt.dataset.matched) return;
+          playSound('pop');
+
+          if (selectedWordEl) {
+            if (selectedWordEl.dataset.id === tgt.dataset.id) {
+              markMatchSuccess(selectedWordEl, tgt);
+            } else {
+              triggerMismatch(selectedWordEl, tgt);
+            }
+            return;
+          }
+
+          if (selectedTargetEl === tgt) {
+            tgt.classList.remove('item-selected');
+            selectedTargetEl = null;
+          } else {
+            targets.forEach(other => other.classList.remove('item-selected'));
+            tgt.classList.add('item-selected');
+            selectedTargetEl = tgt;
+          }
+        });
+      });
+
+      // Drag-to-connect
+      words.forEach(wordEl => {
+        let pointerMoved = false;
+        let startPointerX = 0;
+        let startPointerY = 0;
+
+        wordEl.addEventListener('pointerdown', (e) => {
+          if (wordEl.dataset.matched) return;
+          activeDragEl = wordEl;
+          pointerMoved = false;
+          startPointerX = e.clientX;
+          startPointerY = e.clientY;
+
+          try {
+            wordEl.setPointerCapture(e.pointerId);
+          } catch (_) {}
+
+          syncSvgBounds();
+          const start = getCenter(wordEl);
+
+          if (!tempLine) {
+            tempLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            tempLine.setAttribute('x1', start.x);
+            tempLine.setAttribute('y1', start.y);
+            tempLine.setAttribute('x2', start.x);
+            tempLine.setAttribute('y2', start.y);
+            tempLine.setAttribute('stroke', '#FFD200');
+            tempLine.setAttribute('stroke-width', '5');
+            tempLine.setAttribute('stroke-dasharray', '8,6');
+            tempLine.setAttribute('stroke-linecap', 'round');
+            svgCanvas.appendChild(tempLine);
+          }
+        });
+
+        wordEl.addEventListener('pointermove', (e) => {
+          if (!activeDragEl || !tempLine) return;
+          const dist = Math.hypot(e.clientX - startPointerX, e.clientY - startPointerY);
+          if (dist > 10) pointerMoved = true;
+
+          const sRect = stage.getBoundingClientRect();
+          tempLine.setAttribute('x2', e.clientX - sRect.left);
+          tempLine.setAttribute('y2', e.clientY - sRect.top);
+        });
+
+        const handlePointerEnd = (e) => {
+          if (!activeDragEl) return;
+          if (tempLine) {
+            tempLine.remove();
+            tempLine = null;
+          }
+
+          try {
+            wordEl.releasePointerCapture(e.pointerId);
+          } catch (_) {}
+
+          if (!pointerMoved) {
+            activeDragEl = null;
+            return;
+          }
+
+          const elUnder = document.elementFromPoint(e.clientX, e.clientY);
+          const hitTarget = elUnder ? elUnder.closest('.connect-target') : null;
+
+          if (hitTarget && !hitTarget.dataset.matched) {
+            if (hitTarget.dataset.id === activeDragEl.dataset.id) {
+              markMatchSuccess(activeDragEl, hitTarget);
+            } else {
+              triggerMismatch(activeDragEl, hitTarget);
+            }
+          } else {
+            playSound('gentle');
+            activeDragEl.classList.add('anim-wobble');
+            setTimeout(() => activeDragEl && activeDragEl.classList.remove('anim-wobble'), 500);
+          }
+
+          activeDragEl = null;
+        };
+
+        wordEl.addEventListener('pointerup', handlePointerEnd);
+        wordEl.addEventListener('pointercancel', handlePointerEnd);
+      });
+    }
+
+    /* VARIATION E */
+    function renderVariationE(task, container) {
+      const t = I18N[currentLang];
+      const targetWord = currentLang === 'ms' ? task.bodyPart.bm.toUpperCase() : task.bodyPart.en.toUpperCase();
+      setMascotState('thinking', t.promptSpellThis);
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center w-full">
+          <div class="w-36 h-32 sm:w-44 sm:h-40 mb-3">
+            ${renderBodyPartCard(task.bodyPart)}
+          </div>
+          <div id="spellingSubArea" class="w-full flex flex-col items-center"></div>
+        </div>
+      `;
+      renderSpellingStage(targetWord, document.getElementById('spellingSubArea'));
+    }
+
+    /* TAHAP EJAAN HURUF (BERSIH TANPA BAYANGAN & TERUS NEXT JIKA SALAH) */
+    function renderSpellingStage(targetWord, targetParent) {
+      const cleanWord = targetWord.replace(/\s+/g, '');
+      const letters = cleanWord.split('');
+      const scrambled = shuffleArray(letters);
+
+      let tries = 0;
+      while (letters.length > 2 && scrambled.join('') === cleanWord && tries < 8) {
+        scrambled.sort(() => Math.random() - 0.5);
+        tries++;
+      }
+
+      targetParent.innerHTML = `
+        <div class="w-full flex flex-col items-center">
+          <!-- Target Letter Slots (Bersih tanpa bayangan huruf) -->
+          <div id="slotsContainer" class="flex flex-wrap items-center justify-center gap-2 mb-3">
+            ${letters.map((char, idx) => `
+              <div class="letter-slot cursor-pointer" 
+                   data-expected="${char}" 
+                   data-index="${idx}"
+                   title="${currentLang === 'ms' ? 'Tekan untuk keluarkan huruf' : 'Tap to remove letter'}">
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Petunjuk ringkas -->
+          <div class="text-xs text-yellow-200/80 font-bold mb-3 text-center">
+            ${currentLang === 'ms' ? 'Tekan huruf untuk susun. Tekan petak untuk tukar semula.' : 'Tap letters to place. Tap slot to take back.'}
+          </div>
+
+          <!-- Available Scrambled Letter Tiles -->
+          <div id="tilesPool" class="flex flex-wrap items-center justify-center gap-2.5 min-h-[68px]">
+            ${scrambled.map((char, idx) => {
+              const candyVariants = ['tile-pink', 'tile-orange', 'tile-blue', 'tile-purple', 'tile-cyan'];
+              const cClass = candyVariants[idx % candyVariants.length];
+              return `
+                <div class="letter-tile ${cClass}" 
+                     data-letter="${char}" 
+                     data-id="tile-${idx}">
+                  ${char}
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Butang Susun Semula -->
+          <div class="mt-3">
+            <button id="resetSpellingBtn" onclick="resetSpellingTiles()" class="hidden px-4 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-black text-yellow-200 border border-white/30 transition">
+              🔄 ${currentLang === 'ms' ? 'Susun Semula' : 'Reset Letters'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      initSpellingInteractions(cleanWord);
+    }
+
+    window.resetSpellingTiles = function() {
+      const slots = document.querySelectorAll('.letter-slot');
+      const tiles = document.querySelectorAll('.letter-tile');
+      slots.forEach(slot => {
+        slot.textContent = '';
+        slot.dataset.letter = '';
+        slot.dataset.tileId = '';
+        slot.className = 'letter-slot cursor-pointer';
+      });
+      tiles.forEach(tile => {
+        tile.dataset.placed = '';
+        tile.style.visibility = 'visible';
+        tile.style.display = 'flex';
+      });
+      const resetBtn = document.getElementById('resetSpellingBtn');
+      if (resetBtn) resetBtn.classList.add('hidden');
+      setMascotState('thinking', I18N[currentLang].promptSpellThis);
+      playSound('pop');
+    };
+
+    function initSpellingInteractions(targetWord) {
+      const slots = document.querySelectorAll('.letter-slot');
+      const tiles = document.querySelectorAll('.letter-tile');
+
+      function placeTileInSlot(tile, slot) {
+        playSound('snap');
+        const letter = tile.dataset.letter;
+        const tileId = tile.dataset.id;
+
+        tile.dataset.placed = "true";
+        tile.style.visibility = 'hidden';
+
+        slot.textContent = letter;
+        slot.dataset.letter = letter;
+        slot.dataset.tileId = tileId;
+        slot.classList.remove('wrong-attempt');
+        slot.classList.add('placed-pending', 'anim-bounce');
+        setTimeout(() => slot.classList.remove('anim-bounce'), 400);
+
+        const resetBtn = document.getElementById('resetSpellingBtn');
+        if (resetBtn) resetBtn.classList.remove('hidden');
+
+        // Semak HANYA apabila semua petak sudah dipenuhi
+        const allFilled = Array.from(slots).every(s => Boolean(s.dataset.letter));
+        if (allFilled) {
+          validateCompletedSpelling();
+        }
+      }
+
+      function validateCompletedSpelling() {
+        const assembledWord = Array.from(slots).map(s => s.dataset.letter).join('');
+        activeSession.totalAttempts++;
+
+        if (assembledWord === targetWord) {
+          // Betul! Semua susunan tepat
+          playSound('correct');
+          slots.forEach(s => {
+            s.classList.remove('placed-pending', 'wrong-attempt');
+            s.classList.add('filled', 'anim-bounce');
+          });
+          setMascotState('correct', I18N[currentLang].correctFeedback);
+          completeTaskSuccess();
+        } else {
+          // SALAH SUSUNAN: Beri maklum balas dan TERUS NEXT!
+          playSound('gentle');
+          slots.forEach(s => {
+            s.classList.add('wrong-attempt', 'anim-wobble');
+          });
+          setMascotState('mistake', I18N[currentLang].tryAgain);
+
+          // Kunci butang reset & elakkan tekan semasa peralihan
+          const resetBtn = document.getElementById('resetSpellingBtn');
+          if (resetBtn) resetBtn.classList.add('hidden');
+          slots.forEach(s => s.style.pointerEvents = 'none');
+
+          setTimeout(() => {
+            activeSession.currentQuestionIndex++;
+            loadNextTask();
+          }, 1250);
+        }
+      }
+
+      // Tekan huruf di bawah untuk letak ke petak kosong pertama
+      tiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+          if (tile.dataset.placed === "true") return;
+          const emptySlot = Array.from(slots).find(s => !s.dataset.letter);
+          if (!emptySlot) return;
+          placeTileInSlot(tile, emptySlot);
+        });
+      });
+
+      // Tekan huruf di petak untuk kembalikan ke bawah
+      slots.forEach(slot => {
+        slot.addEventListener('click', () => {
+          if (!slot.dataset.letter) return;
+          const tileId = slot.dataset.tileId;
+          const matchingTile = document.querySelector(`.letter-tile[data-id="${tileId}"]`);
+          if (matchingTile) {
+            matchingTile.dataset.placed = "";
+            matchingTile.style.visibility = 'visible';
+          }
+          slot.textContent = '';
+          slot.dataset.letter = '';
+          slot.dataset.tileId = '';
+          slot.className = 'letter-slot cursor-pointer';
+          playSound('pop');
+
+          setMascotState('thinking', I18N[currentLang].promptSpellThis);
+
+          const hasAny = Array.from(slots).some(s => Boolean(s.dataset.letter));
+          const resetBtn = document.getElementById('resetSpellingBtn');
+          if (resetBtn) {
+            if (hasAny) resetBtn.classList.remove('hidden');
+            else resetBtn.classList.add('hidden');
+          }
+        });
+      });
+
+      // Tarik & Lepas (Drag and Drop)
+      let activeDragTile = null;
+
+      tiles.forEach(tile => {
+        const onDragStart = (e) => {
+          if (tile.dataset.placed === "true") return;
+          activeDragTile = tile;
+          tile.classList.add('dragging');
+          playSound('pop');
+        };
+
+        tile.addEventListener('touchstart', onDragStart, { passive: true });
+        tile.addEventListener('mousedown', onDragStart);
+      });
+
+      window.addEventListener('touchend', (e) => {
+        if (!activeDragTile) return;
+        const touch = e.changedTouches[0];
+        handleTileDrop(touch.clientX, touch.clientY);
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        if (!activeDragTile) return;
+        handleTileDrop(e.clientX, e.clientY);
+      });
+
+      function handleTileDrop(clientX, clientY) {
+        if (!activeDragTile) return;
+        activeDragTile.classList.remove('dragging');
+
+        let hitSlot = null;
+        slots.forEach(slot => {
+          const r = slot.getBoundingClientRect();
+          if (clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom) {
+            hitSlot = slot;
+          }
+        });
+
+        if (hitSlot) {
+          if (hitSlot.dataset.letter) {
+            const prevTileId = hitSlot.dataset.tileId;
+            const prevTile = document.querySelector(`.letter-tile[data-id="${prevTileId}"]`);
+            if (prevTile) {
+              prevTile.dataset.placed = "";
+              prevTile.style.visibility = 'visible';
+            }
+          }
+          placeTileInSlot(activeDragTile, hitSlot);
+        } else {
+          playSound('pop');
+        }
+        activeDragTile = null;
+      }
+    }
+
+    function completeTaskSuccess() {
+      playSound('correct');
+      activeSession.score += 10;
+      activeSession.correctCount++;
+      setMascotState('correct', I18N[currentLang].correctFeedback);
+
+      const taskArea = document.getElementById('taskContent');
+      if (taskArea) taskArea.classList.add('anim-glow');
+
+      setTimeout(() => {
+        activeSession.currentQuestionIndex++;
+        loadNextTask();
+      }, 950);
+    }
+
+    function finishGameSession() {
+      playSound('correct');
+      activeSession.isRunning = false;
+
+      const accuracy = activeSession.totalAttempts > 0 
+        ? Math.round((activeSession.correctCount / activeSession.totalAttempts) * 100)
+        : 100;
+
+      userProfile.gamesPlayed++;
+      userProfile.questionsAnswered += activeSession.correctCount;
+      userProfile.correctAnswers += activeSession.correctCount;
+      if (activeSession.score > userProfile.bestScore) {
+        userProfile.bestScore = activeSession.score;
+      }
+
+      const today = new Date();
+      const dateStr = today.getDate() + '/' + (today.getMonth() + 1);
+      userProfile.recentActivity.unshift({
+        date: dateStr,
+        type: activeSession.totalQuestions === 0 ? 'Free Play' : `${activeSession.totalQuestions} Qs`,
+        score: activeSession.score,
+        accuracy: accuracy
+      });
+      if (userProfile.recentActivity.length > 5) userProfile.recentActivity.pop();
+
+      saveProfile(userProfile);
+
+      document.getElementById('resScore').textContent = activeSession.score;
+      document.getElementById('resCorrect').textContent = activeSession.correctCount;
+      document.getElementById('resAccuracy').textContent = accuracy + '%';
+      document.getElementById('resultMascot').innerHTML = renderMascot('celebration');
+
+      showScreen('result');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTranslations();
+      showScreen('home');
+      document.getElementById('homeMascotContainer').innerHTML = renderMascot('idle');
+    });
+  </script>
+</body>
+</html>
